@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" width="1024" height="512">
+    <!-- Background -->
+    <rect width="1024" height="512" fill="#EDE9E1"/>
+    
+    <!-- Open Book Outline -->
+    <path d="M 280 140 L 280 350 Q 280 360 290 365 L 500 380 Q 512 381 524 380 L 734 365 Q 744 360 744 350 L 744 140 Q 744 130 734 125 L 524 110 Q 512 109 500 110 L 290 125 Q 280 130 280 140 Z" 
+          fill="none" stroke="#1a3a52" stroke-width="8" stroke-linejoin="round"/>
+    
+    <!-- Book spine/center -->
+    <line x1="512" y1="110" x2="512" y2="380" stroke="#1a3a52" stroke-width="8"/>
+    
+    <!-- Left page vertical line -->
+    <path d="M 310 135 L 310 355" fill="none" stroke="#1a3a52" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- Right page vertical line -->
+    <path d="M 714 135 L 714 355" fill="none" stroke="#1a3a52" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- Flask (left page) -->
+    <g transform="translate(380, 180)">
+        <!-- Flask body -->
+        <path d="M 30 0 L 30 20 L 15 50 Q 10 60 10 70 L 10 90 Q 10 100 20 100 L 70 100 Q 80 100 80 90 L 80 70 Q 80 60 75 50 L 60 20 L 60 0 Z" 
+              fill="none" stroke="#1a3a52" stroke-width="6" stroke-linejoin="round"/>
+        
+        <!-- Flask neck -->
+        <line x1="30" y1="0" x2="60" y2="0" stroke="#1a3a52" stroke-width="6" stroke-linecap="round"/>
+        
+        <!-- Bubbles -->
+        <circle cx="35" cy="65" r="3" fill="#1a3a52"/>
+        <circle cx="45" cy="55" r="3" fill="#1a3a52"/>
+        <circle cx="55" cy="65" r="3" fill="#1a3a52"/>
+    </g>
+    
+    <!-- Pen nib (right page) -->
+    <g transform="translate(570, 180)">
+        <!-- Pen body -->
+        <path d="M 80 10 L 20 70 L 10 80 L 20 90 L 30 80 L 90 20 Z" 
+              fill="none" stroke="#1a3a52" stroke-width="6" stroke-linejoin="round"/>
+        
+        <!-- Nib detail -->
+        <line x1="20" y1="70" x2="30" y2="80" stroke="#1a3a52" stroke-width="6" stroke-linecap="round"/>
+        
+        <!-- Pen shaft lines -->
+        <line x1="50" y1="40" x2="80" y2="10" stroke="#1a3a52" stroke-width="6" stroke-linecap="round"/>
+    </g>
+</svg>
