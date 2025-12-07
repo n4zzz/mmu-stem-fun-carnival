@@ -16,7 +16,7 @@
     "department": "Physics",
     "safety_requirements": "Lab coat required, Safety goggles mandatory, Completed safety training",
     "supervisor_required": true,
-    "image": "physics-lab-1.jpg"
+    "image": "room-1.jpg"
   },
   {
     "$id": "2",
@@ -35,7 +35,7 @@
     "department": "Biology",
     "safety_requirements": "Biohazard training completed, Lab coat and gloves required, No food or drink",
     "supervisor_required": true,
-    "image": "biology-lab-2.jpg"
+    "image": "room-1.jpg"
   },
   {
     "$id": "3",
@@ -54,7 +54,7 @@
     "department": "Engineering",
     "safety_requirements": "Tool safety certification, Closed-toe shoes required, Safety glasses mandatory",
     "supervisor_required": false,
-    "image": "makerspace-3.jpg"
+    "image": "room-1.jpg"
   },
   {
     "$id": "4",
@@ -73,7 +73,7 @@
     "department": "Computer Science",
     "safety_requirements": "Valid student ID required, No unauthorized software installation",
     "supervisor_required": false,
-    "image": "computer-lab-4.jpg"
+    "image": "room-1.jpg"
   },
   {
     "$id": "5",
@@ -92,6 +92,6 @@
     "department": "Chemistry",
     "safety_requirements": "Chemical safety training mandatory, Lab coat and goggles required, Closed-toe shoes only",
     "supervisor_required": true,
-    "image": "chemistry-lab-5.jpg"
+    "image": "room-1.jpg"
   }
 ]
