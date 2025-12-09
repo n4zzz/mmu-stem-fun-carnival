@@ -22,7 +22,6 @@ const Header = () => {
 
                                 <Link href="/" className="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-700 hover:text-white">Resources</Link>
                                 <Link href="/bookings" className="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-700 hover:text-white">Reservations</Link>
-                                <Link href="/rooms/add" className="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-700 hover:text-white">Add Room</Link>
                             </div>
                         </div>
                     </div>
@@ -34,9 +33,6 @@ const Header = () => {
                             </Link>
                             <Link href="/register" className="mr-3 text-gray-800 hover:text-gray-600">
                                 <FaUser className="inline mr-1"/> Register
-                            </Link>
-                            <Link href="/rooms/my" className="mr-3 text-gray-800 hover:text-gray-600">
-                                <FaBuilding className="inline mr-1"/> My Rooms
                             </Link>
                             <Link href="/login" className="mx-3 text-gray-800 hover:text-gray-600">
                                 <FaSignOutAlt className="inline mr-1"/> Sign Out
