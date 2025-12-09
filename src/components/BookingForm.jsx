@@ -1,8 +1,13 @@
-const BookingForm = () => {
+"use client";
+import createBooking from "@/app/actions/booking";
+
+const BookingForm = ({ room }) => {
+    const handleSubmit = createBooking.bind(null, room.$id);
+
     return (
         <div className="mt-6">
             <h2 className="text-xl font-bold">Book this Room</h2>
-            <form className="mt-4">
+            <form action={handleSubmit} className="mt-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     
                     <div className="sm:col-span-2">

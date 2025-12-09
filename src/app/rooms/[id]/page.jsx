@@ -3,7 +3,6 @@ import BookingForm from "@/components/BookingForm";
 import Image from "next/image";
 import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa";
-import rooms from "@/data/rooms.json";
 import getSingleRoom from "@/app/actions/getSingleRoom";
 
 const RoomPage = async ({ params }) => {
@@ -34,31 +33,24 @@ const RoomPage = async ({ params }) => {
 
                     <div className="mt-4 sm:mt-0 sm:flex-1">
                         <p className="text-gray-600 mb-4">
-                            {room.description};
+                            {room.description}
                         </p>
 
                         <ul className="space-y-2">
                             <li>
-                                <span className="font-semibold text-gray-800">Size:</span>
-                                {room.sqft}
+                                <span className="font-semibold text-gray-800">Size:</span> {room.sqft} sqft
                             </li>
                             <li>
-                                <span className="font-semibold text-gray-800">Availability:</span>
-                                {room.availability}
+                                <span className="font-semibold text-gray-800">Availability:</span> {room.availability}
                             </li>
                             <li>
-                                <span className="font-semibold text-gray-800">Price:</span> $
-                                {room.price_per_hour}/hour
-                            </li>
-                            <li>
-                                <span className="font-semibold text-gray-800">Address:</span> 
-                                {room.address}
+                                <span className="font-semibold text-gray-800">Address:</span> {room.address}
                             </li>
                         </ul>
                     </div>
                 </div>
                 
-                <BookingForm/>
+                <BookingForm room={room}/>
                
             </div>
         </>
