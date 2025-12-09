@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { login } from "@/app/actions/auth";
 
 const LoginPage = () => {
     return (
         <div className="flex items-center justify-center">
             <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-sm mt-20">
-                <form>
+                <form action={login}> 
                     <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
                         Login
                     </h2>
@@ -43,7 +44,7 @@ const LoginPage = () => {
 
                         <p>
                             No account?
-                            <Link href="/register" className="text-blue-500">Register</Link>
+                            <Link href="/register" className="text-blue-500"> Register</Link>
                         </p>
                     </div>
                 </form>

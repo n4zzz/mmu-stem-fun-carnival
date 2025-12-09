@@ -1,16 +1,57 @@
-import { NextResponse } from "next/server";
+import { createServerClient } from '@supabase/ssr'
+import { NextResponse } from 'next/server'
 
 export async function middleware(request) {
-    const isAuthenticated = true;
+  let supabaseResponse = NextResponse.next({
+    request,
+  })
 
-    if (!isAuthenticated) {
-        return NextResponse.redirect(new URL("/login", request.url));
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll()
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            request.cookies.set(name, value)
+          )
+          supabaseResponse = NextResponse.next({
+            request,
+          })
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, options)
+          )
+        },
+      },
     }
+  )
 
-    return NextResponse.next();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  const protectedPaths = ['/dashboard', '/bookings']
+  
+  if (request.nextUrl.pathname === '/') {
+    if (user) {
+        return NextResponse.redirect(new URL('/dashboard', request.url));
+    } else {
+        return NextResponse.redirect(new URL('/login', request.url));
+    }
+  }
+
+  if (!user && protectedPaths.some(path => request.nextUrl.pathname.startsWith(path))) {
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
+
+  return supabaseResponse
 }
 
 export const config = {
-    matcher: ["/bookings"],
-
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico|images).*)',
+  ],
 }
