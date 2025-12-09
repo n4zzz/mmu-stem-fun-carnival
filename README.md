@@ -12,4 +12,8 @@ npm run dev
 
 open link http://localhost:3000
 
+login details:-
+email: user@gg.com
+password: 123456
+
 ```
