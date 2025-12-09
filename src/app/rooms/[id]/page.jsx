@@ -54,7 +54,7 @@ const RoomPage = async ({ params }) => {
                     />
 
                     <div className="mt-4 sm:mt-0 sm:flex-1">
-                        <p className="text-gray-600 mb-4">
+                        <p className="text-gray mb-4 font-bold text-2xl">
                             {room.description}
                         </p>
 
