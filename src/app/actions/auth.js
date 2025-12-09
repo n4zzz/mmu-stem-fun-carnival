@@ -52,7 +52,7 @@ export async function signup(formData) {
   }
 
   revalidatePath('/', 'layout');
-  redirect('/dashboard');
+  redirect('/login?message=Registration successful. Please log in.');
 }
 
 export async function logout() {
