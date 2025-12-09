@@ -2,7 +2,7 @@ import Heading from "@/components/Heading";
 import BookingForm from "@/components/BookingForm";
 import Image from "next/image";
 import Link from "next/link";
-import { FaChevronLeft, FaShieldAlt } from "react-icons/fa";
+import { FaChevronLeft, FaShieldAlt, FaTools } from "react-icons/fa";
 import getSingleRoom from "@/app/actions/getSingleRoom";
 import supabase from "@/config/supabase";
 import ExperimentSuggester from "@/components/ExperimentSuggester";
@@ -19,6 +19,21 @@ const RoomPage = async ({ params }) => {
     if (!room) {
         return <Heading title='Resource Not Found' />;
     }
+
+    const isEquipment = room.category === 'Equipment';
+
+    const guidelines = isEquipment ? [
+        "Read the operating manual before powering on.",
+        "Check calibration status before use (If applicable).",
+        "Wear insulated gloves and safety goggles.",
+        "Do not leave the equipment running unattended."
+    ] : [
+        "Lab coat and safety goggles are required at all times.",
+        "No food or drinks allowed inside the laboratory.",
+        "Keep emergency exits clear of obstructions.",
+        "Wash hands thoroughly before leaving the lab.",
+        "Dispose of chemical waste in designated containers."
+    ];
 
     return (
         <>
@@ -43,7 +58,13 @@ const RoomPage = async ({ params }) => {
                             {room.description}
                         </p>
 
-                        <ul className="space-y-2 mt-6">
+                        <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 ${
+                            isEquipment ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
+                        }`}>
+                            {room.category || 'Resource'}
+                        </span>
+
+                        <ul className="space-y-2">
                             <li>
                                 <span className="font-semibold text-gray-800">Size: </span> {room.sqft} sqft
                             </li>
@@ -55,15 +76,21 @@ const RoomPage = async ({ params }) => {
                             </li>
                         </ul>
 
-                        <div className="mt-6 bg-blue-50 p-4 rounded-lg border border-blue-100">
-                            <h3 className="text-sm font-bold text-gray-800 flex items-center gap-2">
-                                <FaShieldAlt /> Safety Guidelines
+                        <div className={`mt-6 p-4 rounded-lg border ${
+                            isEquipment ? 'bg-amber-50 border-amber-100' : 'bg-blue-50 border-blue-100'
+                        }`}>
+                            <h3 className={`text-sm font-bold flex items-center gap-2 ${
+                                isEquipment ? 'text-amber-800' : 'text-blue-800'
+                            }`}>
+                                {isEquipment ? <FaTools /> : <FaShieldAlt />} 
+                                {isEquipment ? "Equipment Safety Protocols" : "Lab Safety Guidelines"}
                             </h3>
-                            <ul className="mt-2 text-sm text-gray-700 list-disc pl-5 space-y-1">
-                                <li>Lab coat and safety goggles are required at all times.</li>
-                                <li>No food or drinks allowed inside the laboratory.</li>
-                                <li>Ensure all equipment is powered off after use.</li>
-                                <li>Report any damaged equipment to the supervisor immediately.</li>
+                            <ul className={`mt-2 text-sm list-disc pl-5 space-y-1 ${
+                                isEquipment ? 'text-amber-700' : 'text-blue-700'
+                            }`}>
+                                {guidelines.map((rule, index) => (
+                                    <li key={index}>{rule}</li>
+                                ))}
                             </ul>
                         </div>
                         
