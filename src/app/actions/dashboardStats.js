@@ -10,26 +10,41 @@ async function getDashboardStats() {
         const currentDateStr = now.toISOString().split('T')[0];
         const currentHour = now.getHours();
         const currentMinute = now.getMinutes();
+        const currentMins = (currentHour * 60) + currentMinute;
 
-        const activeBookings = bookings.filter((booking) => {
+        const activeBookingsCount = bookings ? bookings.filter((booking) => {
+            if (booking.booking_date > currentDateStr) return true;
+
+            if (booking.booking_date === currentDateStr) {
+                const [startH, startM] = booking.start_time.split(':').map(Number);
+                const bookingStartMins = (startH * 60) + startM;
+                const bookingEndMins = bookingStartMins + (booking.duration * 60);
+
+                return currentMins < bookingEndMins;
+            }
+
+            return false;
+        }).length : 0;
+
+
+        const currentlyBusyBookings = bookings ? bookings.filter((booking) => {
             if (booking.booking_date !== currentDateStr) return false;
 
             const [startH, startM] = booking.start_time.split(':').map(Number);
-            
             const bookingStartMins = (startH * 60) + startM;
             const bookingEndMins = bookingStartMins + (booking.duration * 60);
-            const currentMins = (currentHour * 60) + currentMinute;
 
             return currentMins >= bookingStartMins && currentMins < bookingEndMins;
-        });
+        }) : [];
 
-        const bookedRoomIds = activeBookings.map((b) => b.room_id);
-        const availableRooms = rooms.filter((room) => !bookedRoomIds.includes(room.id));
+        const busyRoomIds = currentlyBusyBookings.map((b) => b.room_id);
+        const availableRooms = rooms ? rooms.filter((room) => !busyRoomIds.includes(room.id)) : [];
+
 
         return {
             availableCount: availableRooms.length,
-            activeBookingsCount: activeBookings.length,
-            featuredRooms: rooms.slice(0, 2).map(r => ({...r, $id: r.id}))
+            activeBookingsCount: activeBookingsCount,
+            featuredRooms: rooms ? rooms.slice(0, 2).map(r => ({...r, $id: r.id})) : []
         };
 
     } catch (error) {
