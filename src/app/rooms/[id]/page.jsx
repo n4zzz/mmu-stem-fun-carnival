@@ -4,13 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa";
 import getSingleRoom from "@/app/actions/getSingleRoom";
+import supabase from "@/config/supabase";
 
 const RoomPage = async ({ params }) => {
     const { id } = await params;
     const room = await getSingleRoom(id);
-    
+
+    const { data: bookings } = await supabase
+        .from('bookings')
+        .select('*')
+        .eq('room_id', id);
+
     if (!room) {
-        return <Heading title='Room Not Found' />;
+        return <Heading title='Resource Not Found' />;
     }
 
     return (
@@ -19,7 +25,7 @@ const RoomPage = async ({ params }) => {
             <div className="bg-white shadow rounded-lg p-6">
                 <Link href="/" className="flex items-center text-gray-600 hover:text-gray-800 mb-4">
                     <FaChevronLeft className="inline mr-1"/>
-                    <span className="ml-2">Back to Rooms</span>
+                    <span className="ml-2">Back to Resources</span>
                 </Link>
 
                 <div className="flex flex-col sm:flex-row sm:space-x-6">
@@ -50,7 +56,7 @@ const RoomPage = async ({ params }) => {
                     </div>
                 </div>
                 
-                <BookingForm room={room}/>
+                <BookingForm room={room} bookings={bookings || []} />
                
             </div>
         </>
