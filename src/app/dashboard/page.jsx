@@ -1,12 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaBox, FaCalendarCheck, FaClock, FaArrowRight } from "react-icons/fa";
+import { FaBox, FaCalendarCheck, FaClock, FaArrowRight, FaCalendarAlt } from "react-icons/fa";
 import getDashboardStats from "@/app/actions/dashboardStats"; 
 
 const DashboardPage = async () => {
   const statsData = await getDashboardStats();
   
-  const { availableCount = 0, activeBookingsCount = 0, featuredRooms = [] } = statsData || {};
+  const { 
+      availableCount = 0, 
+      activeBookingsCount = 0, 
+      featuredRooms = [], 
+      upcomingBookings = [] 
+  } = statsData || {};
 
   const stats = [
     { 
@@ -34,7 +39,7 @@ const DashboardPage = async () => {
       
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-900 to-blue-700 p-8 text-white shadow-lg">
         <div className="relative z-10">
-          <h1 className="text-3xl font-bold mb-2">Welcome back, User.</h1>
+          <h1 className="text-3xl font-bold mb-2">Welcome back, Nazrin.</h1>
           <p className="text-blue-100 max-w-2xl">
             Your central hub for managing STEM laboratory resources, scheduling equipment, and ensuring safety compliance.
           </p>
@@ -58,7 +63,7 @@ const DashboardPage = async () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 h-full">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 h-full flex flex-col">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-bold text-gray-800">Your Upcoming Reservations</h2>
             <Link href="/bookings" className="text-sm text-blue-600 hover:underline flex items-center gap-1">
@@ -66,12 +71,34 @@ const DashboardPage = async () => {
             </Link>
           </div>
           
-          <div className="flex flex-col items-center justify-center h-48 text-gray-400 bg-gray-50 rounded-lg border-dashed border-2 border-gray-200">
-            <p>No upcoming reservations.</p>
+          <div className="flex-grow">
+            {upcomingBookings.length > 0 ? (
+                <div className="space-y-4">
+                    {upcomingBookings.map((booking) => (
+                        <div key={booking.id} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                             <div className="p-3 bg-white rounded-lg border border-gray-200 text-blue-600">
+                                <FaCalendarAlt size={18} />
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-bold text-gray-900">{booking.rooms?.name || "Resource"}</h4>
+                                <div className="flex gap-2 text-xs text-gray-500 mt-1">
+                                    <span>{booking.booking_date}</span>
+                                    <span>•</span>
+                                    <span>{booking.start_time}</span>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div className="flex flex-col items-center justify-center h-48 text-gray-400 bg-gray-50 rounded-lg border-dashed border-2 border-gray-200">
+                    <p>No upcoming reservations.</p>
+                </div>
+            )}
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 h-full">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-bold text-gray-800">Featured Resources</h2>
             <Link href="/" className="text-sm text-blue-600 hover:underline flex items-center gap-1">
