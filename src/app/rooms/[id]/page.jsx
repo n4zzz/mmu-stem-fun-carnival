@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FaChevronLeft, FaShieldAlt } from "react-icons/fa";
 import getSingleRoom from "@/app/actions/getSingleRoom";
 import supabase from "@/config/supabase";
+import ExperimentSuggester from "@/components/ExperimentSuggester";
 
 const RoomPage = async ({ params }) => {
     const { id } = await params;
@@ -24,7 +25,7 @@ const RoomPage = async ({ params }) => {
             <Heading title={room.name} />
             <div className="bg-white shadow rounded-lg p-6">
                 <Link href="/" className="flex items-center text-gray-600 hover:text-gray-800 mb-4">
-                    <FaChevronLeft className="inline mr-1"/>
+                    <FaChevronLeft className="inline mr-1" />
                     <span className="ml-2">Back to Resources</span>
                 </Link>
 
@@ -42,15 +43,15 @@ const RoomPage = async ({ params }) => {
                             {room.description}
                         </p>
 
-                        <ul className="space-y-2">
+                        <ul className="space-y-2 mt-6">
                             <li>
-                                <span className="font-semibold text-gray-800">Size:</span> {room.sqft} sqft
+                                <span className="font-semibold text-gray-800">Size: </span> {room.sqft} sqft
                             </li>
                             <li>
-                                <span className="font-semibold text-gray-800">Availability:</span> {room.availability}
+                                <span className="font-semibold text-gray-800">Availability: </span> {room.availability}
                             </li>
                             <li>
-                                <span className="font-semibold text-gray-800">Address:</span> {room.address}
+                                <span className="font-semibold text-gray-800">Address: </span> {room.address}
                             </li>
                         </ul>
 
@@ -65,12 +66,16 @@ const RoomPage = async ({ params }) => {
                                 <li>Report any damaged equipment to the supervisor immediately.</li>
                             </ul>
                         </div>
-                         
+                        
+                        <ExperimentSuggester
+                            resourceName={room.name}
+                            description={room.description}
+                        />
                     </div>
                 </div>
-                
+
                 <BookingForm room={room} bookings={bookings || []} />
-               
+
             </div>
         </>
     );
