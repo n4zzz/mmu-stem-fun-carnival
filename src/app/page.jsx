@@ -8,7 +8,7 @@ export default async function Home() {
 
   return (
     <>
-      <Heading title='Available Labs'></Heading>
+      <Heading title='Available Resources'></Heading>
       {rooms.length > 0 ? (
         rooms.map((room) => <RoomCard room={room} />)
       ) : (
