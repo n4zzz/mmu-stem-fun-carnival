@@ -1,25 +1,17 @@
 "use server";
-
-import { createAdminClient } from "@/config/appwrite";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import supabase from "@/config/supabase";
 
 async function getAllRooms() {
-    try {
-        const { databases } = await createAdminClient();
+    const { data: rooms, error } = await supabase
+        .from('rooms')
+        .select('*');
 
-        const {documents: rooms} = await databases.listDocuments(
-            process.env.NEXT_PUBLIC_APPWRITE_DATABASE,
-            process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ROOMS
-        );
-
-        // revalidatePath("/", "layout");
-
-        return rooms;
-    } catch (error) {
-        console.log("Failed to get rooms", error);
-        redirect("/error");
+    if (error) {
+        console.error("Error fetching rooms:", error);
+        return [];
     }
+
+    return rooms.map(room => ({ ...room, $id: room.id }));
 }
 
 export default getAllRooms;
