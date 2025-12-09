@@ -30,17 +30,17 @@ const Header = () => {
             <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     <div className="flex items-center">
-                        <Link href="/" className="flex items-center gap-2">
+                        <Link href="/" className="flex items-center gap-3">
                             <FaFlaskVial className="h-12 w-12 text-gray-800" />
                             <span className="text-xl font-bold text-gray-800">STEM Pulse</span>
                         </Link>
                         <div className="hidden md:block">
                             <div className="ml-10 flex items-baseline space-x-4">
-                                <Link href="/dashboard" className="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-700 hover:text-white">
+                                <Link href="/dashboard" className="rounded-md px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-700 hover:text-white">
                                     Dashboard
                                 </Link>
-                                <Link href="/" className="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-700 hover:text-white">Resources</Link>
-                                <Link href="/bookings" className="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-700 hover:text-white">Reservations</Link>
+                                <Link href="/" className="rounded-md px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-700 hover:text-white">Resources</Link>
+                                <Link href="/bookings" className="rounded-md px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-700 hover:text-white">Reservations</Link>
                             </div>
                         </div>
                     </div>

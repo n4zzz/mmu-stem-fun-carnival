@@ -39,7 +39,7 @@ const DashboardPage = async () => {
       
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-900 to-blue-700 p-8 text-white shadow-lg">
         <div className="relative z-10">
-          <h1 className="text-3xl font-bold mb-2">Welcome back, User.</h1>
+          <h1 className="text-3xl font-bold mb-2">Welcome back, Researcher.</h1>
           <p className="text-blue-100 max-w-2xl">
             Your central hub for managing STEM laboratory resources, scheduling equipment, and ensuring safety compliance.
           </p>
