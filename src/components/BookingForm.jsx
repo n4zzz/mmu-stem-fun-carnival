@@ -22,12 +22,20 @@ const BookingForm = ({ room, bookings }) => {
 
     return (
         <div className="mt-6">
-            <h2 className="text-xl font-bold">Book this Room</h2>
+            <h2 className="text-xl font-bold">Book this Resource</h2>
+            
             
             {error === 'overlap' && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2">
                     <strong className="font-bold">Booking Failed! </strong>
                     <span className="block sm:inline">This time slot overlaps with an existing reservation. Please choose another time.</span>
+                </div>
+            )}
+
+            {error === 'outside_hours' && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2">
+                    <strong className="font-bold">Invalid Time! </strong>
+                    <span className="block sm:inline">The selected time is outside the facility's operating hours ({room.availability}).</span>
                 </div>
             )}
 
