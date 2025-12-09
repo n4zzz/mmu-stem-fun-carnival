@@ -35,11 +35,13 @@ export async function middleware(request) {
 
   const protectedPaths = ['/dashboard', '/bookings']
   
+  if (user && (request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/register')) {
+      return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
+  
   if (request.nextUrl.pathname === '/') {
-    if (user) {
-        return NextResponse.redirect(new URL('/dashboard', request.url));
-    } else {
-        return NextResponse.redirect(new URL('/login', request.url));
+    if (!user) {
+      return NextResponse.redirect(new URL('/login', request.url));
     }
   }
 
