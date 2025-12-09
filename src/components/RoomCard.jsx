@@ -15,11 +15,11 @@ const RoomCard = ({ room }) => {
                 <div className="space-y-1">
                     <h4 className="text-lg font-semibold">{room.name}</h4>
                     <p className="text-sm text-gray-600">
-                        <span className="font-semibold text-gray-800"> Address:</span> 
+                        <span className="font-semibold text-gray-800"> Address: </span> 
                         {room.address}
                     </p>
                     <p className="text-sm text-gray-600">
-                        <span className="font-semibold text-gray-800"> Availability:</span>
+                        <span className="font-semibold text-gray-800"> Availability: </span>
                         {room.availability}
                     </p>
                 </div>

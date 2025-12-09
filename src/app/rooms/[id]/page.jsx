@@ -2,7 +2,7 @@ import Heading from "@/components/Heading";
 import BookingForm from "@/components/BookingForm";
 import Image from "next/image";
 import Link from "next/link";
-import { FaChevronLeft } from "react-icons/fa";
+import { FaChevronLeft, FaShieldAlt } from "react-icons/fa";
 import getSingleRoom from "@/app/actions/getSingleRoom";
 import supabase from "@/config/supabase";
 
@@ -53,6 +53,19 @@ const RoomPage = async ({ params }) => {
                                 <span className="font-semibold text-gray-800">Address:</span> {room.address}
                             </li>
                         </ul>
+
+                        <div className="mt-6 bg-blue-50 p-4 rounded-lg border border-blue-100">
+                            <h3 className="text-sm font-bold text-gray-800 flex items-center gap-2">
+                                <FaShieldAlt /> Safety Guidelines
+                            </h3>
+                            <ul className="mt-2 text-sm text-gray-700 list-disc pl-5 space-y-1">
+                                <li>Lab coat and safety goggles are required at all times.</li>
+                                <li>No food or drinks allowed inside the laboratory.</li>
+                                <li>Ensure all equipment is powered off after use.</li>
+                                <li>Report any damaged equipment to the supervisor immediately.</li>
+                            </ul>
+                        </div>
+                         
                     </div>
                 </div>
                 
